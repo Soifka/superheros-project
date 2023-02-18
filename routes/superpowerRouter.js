@@ -6,6 +6,7 @@ const superpowerRouter = Router();
 
 superpowerRouter.post('/', SuperpowerController.createSuperpower);
 superpowerRouter.get('/:superpowerId', findSuperpower, SuperpowerController.getOneSuperpower);
+superpowerRouter.get('/', SuperpowerController.getAllSuperpowers);
 
 
 module.exports = superpowerRouter;

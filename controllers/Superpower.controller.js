@@ -24,6 +24,19 @@ module.exports.getOneSuperpower = async(req, res, next) => {
     }
 };
 
+module.exports.getAllSuperpowers = async(req, res, next) => {
+    try {
+        const superpowers = await Superpower.findAll();
+        if(superpowers) {
+            return res.status(200).send(superpowers);
+        } else {
+            throw new SuperpowerError(400, 'Cannot get all Superpowers');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports.addSuperpowerToStar = async(req, res, next) => {
     try {
         
