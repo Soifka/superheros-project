@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/stars HTTP/1.1
+Content-Type: application/json
+
+{
+    "nickname": "Iron Man",
+    "realName": "Tony Stark",
+    "description": "Anthony Edward Stark was a billionaire industrialist, a founding member of the Avengers, and the former CEO of Stark Industries. A brash but brilliant inventor, Stark was self-described as a genius, billionaire, playboy, and philanthropist.",
+    "catchphrase": "I am Iron Man"
+}
