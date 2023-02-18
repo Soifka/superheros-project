@@ -14,3 +14,21 @@ module.exports.createSuperpower = async(req, res, next) => {
         next(error);
     }
 };
+
+module.exports.getOneSuperpower = async(req, res, next) => {
+    try {
+        const { superpowerInstance } = req;
+        return res.status(200).send(superpowerInstance);
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.addSuperpowerToStar = async(req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error);
+    }
+};
+
