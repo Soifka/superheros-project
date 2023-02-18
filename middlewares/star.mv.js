@@ -10,7 +10,7 @@ module.exports.findStar = async(req, res, next) => {
             req.starInstance = star;
             next();
         } else {
-            throw new StarError(`Star with id ${starId} not found`);
+            throw new StarError(404, `Star with id ${starId} not found`);
         }
     } catch (error) {
         next(error);
