@@ -1,5 +1,6 @@
+const GlobalError = require('../errors/GlobalError');
 const StarError = require('../errors/StarError');
-const { Star } = require('../models/');
+const { Star, Superpower } = require('../models/');
 
 
 module.exports.createStar = async(req, res, next) => {
@@ -61,6 +62,24 @@ module.exports.deleteStar = async(req, res, next) => {
             return res.status(200).send('Successfully deleted');
         } else {
             throw new StarError(400, 'Cannot delete');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.getStarWithSuperpowers = async(req, res, next) => {
+    try {
+        const {params: {starId}} = req;
+        const starWithSuperpowers = await Star.findByPk(starId, {
+            include: {
+                model: Superpower
+            }
+        });
+        if(starWithSuperpowers) {
+            return res.status(200).send(starWithSuperpowers);
+        } else {
+            throw new GlobalError(400, 'Cannot get Star with superpowers')
         }
     } catch (error) {
         next(error);
