@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Star.hasMany(models.Photo);
       Star.belongsToMany(models.Superpower, {
         through: 'stars_to_superpowers',
-        foreignKey: 'superpowerId'
+        foreignKey: 'starId'
       });
     }
   }
