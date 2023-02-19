@@ -4,7 +4,6 @@ const { Star, Superpower } = require('../models/');
 module.exports.findSuperpower = async(req, res, next) => {
     try {
         const { params: {superpowerId} } = req;
-        console.log(req)
         const superpower = await Superpower.findByPk(superpowerId);
         if(superpower) {
             req.superpowerInstance = superpower;

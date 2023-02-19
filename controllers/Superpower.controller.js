@@ -1,5 +1,6 @@
 const { Superpower } = require('../models/');
 const SuperpowerError = require('../errors/SuperpowerError');
+const GlobalError = require('../errors/GlobalError');
 
 module.exports.createSuperpower = async(req, res, next) => {
     try {
@@ -39,9 +40,16 @@ module.exports.getAllSuperpowers = async(req, res, next) => {
 
 module.exports.addSuperpowerToStar = async(req, res, next) => {
     try {
-        
+        const { starInstance, superpowerInstance } = req;
+        const result = await starInstance.addSuperpower(superpowerInstance);
+        if(result) {
+            return res.status(200).send('Superpower successfully added');
+        } else {
+            throw new GlobalError(400, 'Something is wrong');
+        }
     } catch (error) {
         next(error);
     }
 };
+
 
