@@ -11,6 +11,7 @@ superpowerRouter.get('/:superpowerId', findSuperpower, SuperpowerController.getO
 superpowerRouter.get('/', SuperpowerController.getAllSuperpowers);
 superpowerRouter.put('/:superpowerId/:starId', findSuperpower, findStar, SuperpowerController.addSuperpowerToStar);
 superpowerRouter.put('/:superpowerId', validateSuperpower, findSuperpower, SuperpowerController.updateSuperpower);
+superpowerRouter.delete('/:superpowerId', findSuperpower, SuperpowerController.deleteSuperpower);
 
 
 module.exports = superpowerRouter;

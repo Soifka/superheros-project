@@ -66,4 +66,17 @@ module.exports.updateSuperpower = async(req, res, next) => {
     }
 };
 
-
+module.exports.deleteSuperpower = async(req, res, next) => {
+    try {
+        const { superpowerInstance } = req;
+        const result = await superpowerInstance.destroy();
+        if(result) {
+            console.log(result)
+            return res.status(200).send('Superpower successfully deleted');
+        } else {
+            throw new SuperpowerError(400, 'Cannot delete');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
