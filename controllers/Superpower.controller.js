@@ -52,4 +52,18 @@ module.exports.addSuperpowerToStar = async(req, res, next) => {
     }
 };
 
+module.exports.updateSuperpower = async(req, res, next) => {
+    try {
+        const { superpowerInstance, body } = req;
+        const updated = await superpowerInstance.update(body);
+        if(updated) {
+            return res.status(200).send(updated);
+        } else {
+            throw new SuperpowerError(400, 'Cannot update')
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
 
