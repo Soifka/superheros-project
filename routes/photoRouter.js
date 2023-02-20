@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const PhotoController = require('../controllers/Photo.controller');
 const { findStar } = require('../middlewares/star.mv');
-const { findPhoto } = require('../middlewares/photo.mv');
+const { findPhoto, validatePhoto, validateToRenamePhoto } = require('../middlewares/photo.mv');
 const multer = require('multer');
 const { STATIC_PATH } = require('../config/path.config');
 
@@ -19,10 +19,10 @@ const upload = multer({ storage: storage })
 
 const photoRouter = Router();
 
-photoRouter.post('/:starId', findStar, upload.single('starPhoto'), PhotoController.addPhotoToStar);
+photoRouter.post('/:starId', findStar, upload.single('starPhoto'), validatePhoto, PhotoController.addPhotoToStar);
 photoRouter.get('/:photoId', findPhoto, PhotoController.getOnePhoto);
 photoRouter.get('/', PhotoController.getAllPhotos);
-photoRouter.put('/:photoId', findPhoto, PhotoController.renamePhoto);
+photoRouter.put('/:photoId', findPhoto, validateToRenamePhoto, PhotoController.renamePhoto);
 photoRouter.delete('/:photoId', findPhoto, PhotoController.deletePhoto);
 
 
