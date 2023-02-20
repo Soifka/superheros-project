@@ -29,3 +29,16 @@ module.exports.getOnePhoto = async(req, res, next) => {
         next(error);
     }
 };
+
+module.exports.getAllPhotos = async(req, res, next) => {
+    try {
+        const allPhotos = await Photo.findAll();
+        if(allPhotos) {
+            return res.status(200).send(allPhotos);
+        } else {
+            throw new PhotoError(400, 'Cannot get all Photos');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
