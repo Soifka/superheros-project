@@ -16,6 +16,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Photo.init({
+    name: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     path: {
       type: DataTypes.TEXT,
       allowNull: false,

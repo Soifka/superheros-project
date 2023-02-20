@@ -20,6 +20,10 @@ module.exports = {
           }
         }
       },
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       path: {
         allowNull: false,
         type: Sequelize.TEXT
