@@ -22,6 +22,7 @@ const photoRouter = Router();
 photoRouter.post('/:starId', findStar, upload.single('starPhoto'), PhotoController.addPhotoToStar);
 photoRouter.get('/:photoId', findPhoto, PhotoController.getOnePhoto);
 photoRouter.get('/', PhotoController.getAllPhotos);
+photoRouter.put('/:photoId', findPhoto, PhotoController.renamePhoto);
 
 
 module.exports = photoRouter;

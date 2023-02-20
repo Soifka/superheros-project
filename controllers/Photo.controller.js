@@ -42,3 +42,17 @@ module.exports.getAllPhotos = async(req, res, next) => {
         next(error);
     }
 };
+
+module.exports.renamePhoto = async(req, res, next) => {
+    try {
+        const { photoInstance, body } = req;
+        const updated = await photoInstance.update(body);
+        if(updated) {
+            return res.status(200).send(updated);
+        } else {
+            throw new PhotoError(400, 'Cannot update')
+        }
+    } catch (error) {
+        next(error);
+    }
+};
