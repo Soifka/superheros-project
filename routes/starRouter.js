@@ -8,6 +8,7 @@ starRouter.post('/', validateStar, StarController.createStar);
 starRouter.get('/:starId', findStar, StarController.getOneStar);
 starRouter.get('/', StarController.getAllStars);
 starRouter.get('/:starId/superpowers', StarController.getStarWithSuperpowers);
+starRouter.get('/:starId/photos', StarController.getStarWithPhotos);
 starRouter.put('/:starId', validateToUpdateStar, findStar, StarController.updateStar);
 starRouter.delete('/:starId', findStar, StarController.deleteStar);
 

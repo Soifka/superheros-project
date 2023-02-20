@@ -1,6 +1,6 @@
 const GlobalError = require('../errors/GlobalError');
 const StarError = require('../errors/StarError');
-const { Star, Superpower } = require('../models/');
+const { Star, Superpower, Photo } = require('../models/');
 
 
 module.exports.createStar = async(req, res, next) => {
@@ -80,6 +80,24 @@ module.exports.getStarWithSuperpowers = async(req, res, next) => {
             return res.status(200).send(starWithSuperpowers);
         } else {
             throw new GlobalError(400, 'Cannot get Star with superpowers')
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.getStarWithPhotos = async(req, res, next) => {
+    try {
+        const {params: {starId}} = req;
+        const starWithPhotos = await Star.findByPk(starId, {
+            include: {
+                model: Photo
+            }
+        });
+        if(starWithPhotos) {
+            return res.status(200).send(starWithPhotos);
+        } else {
+            throw new GlobalError(400, 'Cannot get Star with photos')
         }
     } catch (error) {
         next(error);
