@@ -79,7 +79,7 @@ module.exports.getStarWithSuperpowers = async(req, res, next) => {
         if(starWithSuperpowers) {
             return res.status(200).send(starWithSuperpowers);
         } else {
-            throw new GlobalError(400, 'Cannot get Star with superpowers')
+            throw new StarError(400, 'Cannot get Star with superpowers')
         }
     } catch (error) {
         next(error);
@@ -97,7 +97,7 @@ module.exports.getStarWithPhotos = async(req, res, next) => {
         if(starWithPhotos) {
             return res.status(200).send(starWithPhotos);
         } else {
-            throw new GlobalError(400, 'Cannot get Star with photos')
+            throw new StarError(400, 'Cannot get Star with photos')
         }
     } catch (error) {
         next(error);
