@@ -18,7 +18,8 @@ module.exports = {
             tableName: 'stars',
             key: 'id'
           }
-        }
+        },
+        onDelete: 'cascade'
       },
       name: {
         allowNull: false,
