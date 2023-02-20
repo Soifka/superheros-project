@@ -23,6 +23,7 @@ photoRouter.post('/:starId', findStar, upload.single('starPhoto'), PhotoControll
 photoRouter.get('/:photoId', findPhoto, PhotoController.getOnePhoto);
 photoRouter.get('/', PhotoController.getAllPhotos);
 photoRouter.put('/:photoId', findPhoto, PhotoController.renamePhoto);
+photoRouter.delete('/:photoId', findPhoto, PhotoController.deletePhoto);
 
 
 module.exports = photoRouter;

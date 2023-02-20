@@ -56,3 +56,17 @@ module.exports.renamePhoto = async(req, res, next) => {
         next(error);
     }
 };
+
+module.exports.deletePhoto = async(req, res, next) => {
+    try {
+        const { photoInstance } = req;
+        const result = await photoInstance.destroy();
+        if(result) {
+            return res.status(200).send('Photo was successfully deleted');
+        } else {
+            throw new PhotoError(400, 'Cannot delete');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
