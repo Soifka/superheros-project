@@ -21,7 +21,6 @@ module.exports.addPhotoToStar = async(req, res, next) => {
 };
 
 module.exports.getOnePhoto = async(req, res, next) => {
-    console.log(req.photoInstance)
     try {
         const { photoInstance } = req;
         return res.status(200).send(photoInstance);

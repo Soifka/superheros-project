@@ -17,7 +17,6 @@ module.exports.findPhoto = async(req, res, next) => {
 };
 
 module.exports.validatePhoto = async(req, res, next) => {
-    console.log('validate!!!')
     try {
         const { body } = req;
         const validatedBody = await PHOTO_ADD_SCHEMA.validate(body, {abortEarly: false});
