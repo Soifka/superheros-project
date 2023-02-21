@@ -1,7 +1,7 @@
-const GlobalError = require('../errors/GlobalError');
-const StarError = require('../errors/StarError');
 const { Star, Superpower, Photo } = require('../models/');
-
+const StarError = require('../errors/StarError');
+const SuperpowerError = require('../errors/SuperpowerError');
+const { sequelize } = require('../models');
 
 module.exports.createStar = async(req, res, next) => {
     try {
@@ -17,10 +17,42 @@ module.exports.createStar = async(req, res, next) => {
     }
 };
 
+module.exports.createStarWithSuperpowers = async(req, res, next) => {
+    const t = await sequelize.transaction();
+
+    try {
+        const { body: {star, superpowers} } = req;
+        const createdStar = await Star.create(star, {transaction: t});
+
+        if(createdStar) {
+            const promisesArr = superpowers.map(async(superpower) => {
+                await createdStar.createSuperpower(superpower, {transaction: t});
+            });
+            
+            const statusArr = [];
+            const addRes = await Promise.allSettled(promisesArr);
+            addRes.forEach((res) => {
+                statusArr.push(res.status);
+            });
+
+            const index = statusArr.indexOf('rejected');
+            if(index >= 0) {
+                throw new SuperpowerError(400, 'Cannot create superpowers');
+            } else {
+                await t.commit();
+            }
+        } else {
+            throw new StarError(400, 'Cannot create Star');
+        }
+    } catch (error) {
+        await t.rollback();
+        next(error);
+    }
+};
+
 module.exports.getOneStar = async(req, res, next) => {
     try {
         const { starInstance } = req;
-        // console.log(starInstance)
         return res.status(200).send(starInstance);
     } catch (error) {
         next(error);

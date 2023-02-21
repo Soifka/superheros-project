@@ -1,4 +1,4 @@
-const { Photo, Star } = require('../models');
+const { Photo } = require('../models');
 const PhotoError = require('../errors/PhotoError');
 
 module.exports.addPhotoToStar = async(req, res, next) => {

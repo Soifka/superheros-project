@@ -1,0 +1,12 @@
+POST http://localhost:3000/api/stars/superpowers HTTP/1.1
+Content-Type: application/json
+
+{
+    "star":{
+        "nickname": "TEST",
+        "realName": "Diana Prince",
+        "description": "TEST",
+        "catchphrase": "I will fight for those who cannot fight for themselves."
+    },
+    "superpowers": [{"description": "superpower_1"}, {"description": "superpower_2"}]
+}

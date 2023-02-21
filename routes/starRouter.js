@@ -5,6 +5,7 @@ const { findStar, validateStar, validateToUpdateStar } = require('../middlewares
 const starRouter = Router();
 
 starRouter.post('/', validateStar, StarController.createStar);
+starRouter.post('/superpowers', StarController.createStarWithSuperpowers);
 starRouter.get('/:starId', findStar, StarController.getOneStar);
 starRouter.get('/', StarController.getAllStars);
 starRouter.get('/:starId/superpowers', StarController.getStarWithSuperpowers);
