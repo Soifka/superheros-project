@@ -32,7 +32,7 @@ module.exports = {
     ], {}
     )
   },
-
+  
   // Этот метод (down) практически никогда не используется, его можно вообще удалить -->
   async down (queryInterface, Sequelize) {
     /**
