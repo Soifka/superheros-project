@@ -61,7 +61,10 @@ module.exports.getOneStar = async(req, res, next) => {
 
 module.exports.getAllStars = async(req, res, next) => {
     try {
-        const allStars = await Star.findAll();
+        const { pagination } = req;
+        const allStars = await Star.findAll({
+            ...pagination
+        });
         if(allStars) {
             return res.status(200).send(allStars);
         } else {

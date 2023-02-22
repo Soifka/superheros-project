@@ -1,1 +1,1 @@
-GET http://localhost:3000/api/stars HTTP/1.1
+GET http://localhost:3000/api/stars?limit=0&offset=5  HTTP/1.1
